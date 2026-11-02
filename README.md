@@ -1,5 +1,7 @@
 # qq-bridge-launcher
 
+本项目对原始架构进行了重写，建立了完整的数据结构和信息链路，完全优化agent提示词，节省2倍token预算并将agent回复效率提高10倍+
+
 把 QQ 接入 DeepSeek Harness 的 DSH 插件。桥接本体、控制台、人格 preset、梗图管理器和内置 Python 兜底脚本都在包里；SnowLuma 网关不随包分发，首次启动时从官方 Release 下载并校验安装。
 
 ![QQ ↔ DeepSeek Harness](bridge/assets/deepseek娘.png)

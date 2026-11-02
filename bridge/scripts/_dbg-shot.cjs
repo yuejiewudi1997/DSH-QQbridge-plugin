@@ -1,0 +1,32 @@
+﻿const { spawn } = require('child_process');
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const WebSocket = require('ws');
+const CHROME = ['C:/Program Files/Google/Chrome/Application/chrome.exe','C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find((p) => fs.existsSync(p));
+const PORT = 9334;
+const PROFILE = path.join(os.tmpdir(), 'dsh-dbg-' + Date.now());
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const chrome = spawn(CHROME, ['--headless=new','--disable-gpu','--no-first-run','--remote-debugging-port=' + PORT,'--user-data-dir=' + PROFILE,'about:blank'], { stdio: 'ignore' });
+(async () => {
+  let wsUrl = null;
+  for (let i = 0; i < 40 && !wsUrl; i++) { await sleep(500); try { const list = await (await fetch('http://127.0.0.1:' + PORT + '/json/list')).json(); if (list?.[0]?.webSocketDebuggerUrl) wsUrl = list[0].webSocketDebuggerUrl; } catch {} }
+  console.log('ws', wsUrl ? 'ok' : 'none');
+  const ws = new WebSocket(wsUrl, { perMessageDeflate: false });
+  let id = 0; const pending = new Map();
+  ws.on('message', (raw) => { const m = JSON.parse(raw.toString()); if (m.id && pending.has(m.id)) { const { resolve, reject } = pending.get(m.id); pending.delete(m.id); m.error ? reject(new Error(m.error.message)) : resolve(m.result); } });
+  await new Promise((r) => ws.on('open', r));
+  const send = (method, params = {}) => new Promise((resolve, reject) => { const mid = ++id; pending.set(mid, { resolve, reject }); ws.send(JSON.stringify({ id: mid, method, params })); });
+  await send('Page.enable'); await send('Runtime.enable');
+  const nav = await send('Page.navigate', { url: 'http://127.0.0.1:3100/?cb=' + Date.now() + '#operations' });
+  console.log('nav', JSON.stringify(nav));
+  await sleep(4000);
+  const ev = async (e) => { const r = await send('Runtime.evaluate', { expression: e, returnByValue: true }); return { value: r?.result?.value, type: r?.result?.type, desc: r?.result?.description, exc: r?.exceptionDetails?.text }; };
+  console.log('url', JSON.stringify(await ev('location.href')));
+  console.log('title', JSON.stringify(await ev('document.title')));
+  console.log('ready', JSON.stringify(await ev('document.readyState')));
+  console.log('opsTabRow', JSON.stringify(await ev("!!document.getElementById('opsTabRow')")));
+  console.log('bodyLen', JSON.stringify(await ev('document.body.innerHTML.length')));
+  console.log('firstText', JSON.stringify(await ev('document.body.innerText.slice(0,120)')));
+  ws.close(); try { chrome.kill(); } catch {} process.exit(0);
+})().catch((e) => { console.error('ERR', e.message); try { chrome.kill(); } catch {} process.exit(1); });

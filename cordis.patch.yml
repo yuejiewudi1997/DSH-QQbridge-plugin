@@ -1,0 +1,18 @@
+# 把 qq-bridge 启动器作为一条 host 插件行插入 profile。
+#
+# 这条 entry 只做一件事：DSH 装配到它时 spawn 一个桥接子进程，DSH 卸载/退出时
+# 把子进程杀掉。配置都走下面的 config（也可用环境变量 QQ_BRIDGE_HOME 覆盖）。
+#
+# 为什么桥接不直接塞进 MCP：桥接不是请求-响应工具，它自己持有 OneBot WS 长连接、
+# 控制台 HTTP、定时器和群状态，生命周期跟 DSH 一样长，适合做 host 插件。
+- insert:
+    - id: qq-bridge-launcher
+      name: qq-bridge-launcher
+      config:
+        enabled: true
+        # 不写死 bridgeHome：插件按 <插件>/bridge → 环境变量 → 仓库 的顺序自己找，
+        # 这样同一份配置在开发态和打包态都能用。
+        script: 'src/bridge.js'
+        autoRestart: true
+        # 首次启动（还没有 bridge/config.json）时弹安装向导窗口
+        firstRunGui: true

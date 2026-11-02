@@ -1,0 +1,6 @@
+packages:
+  - .
+# DSH 环境里 pnpm 默认的 junction 布局无法被 Node 的 ESM 解析器穿透，
+# 会导致 @modelcontextprotocol/sdk 找不到 zod-to-json-schema 之类的子依赖。
+# hoisted 布局（真实目录 + 硬链接）可用，且与 DSH 自己 profile 的设置一致。
+nodeLinker: hoisted

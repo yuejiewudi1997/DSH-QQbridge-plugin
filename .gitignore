@@ -1,0 +1,23 @@
+# 依赖
+.npm-cache/
+
+# 运行态：本机的令牌、白名单、表情库、日志，一律不入库
+bridge/state/
+bridge/config.json
+*.log
+*.bak
+*.bak-*
+
+# 先跑一次才会生成的安装结果
+snowluma/
+SnowLuma/
+bridge/installed.json
+
+# Python 缓存（跑过 first-run.py / meme_renamer.py 就会有）
+__pycache__/
+*.pyc
+
+# 编辑器/系统
+.vscode/
+.idea/
+Thumbs.db

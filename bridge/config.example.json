@@ -1,0 +1,401 @@
+{
+  "dsh": {
+    "baseUrl": "http://127.0.0.1:3080",
+    "provider": "deepseek-official",
+    "model": "combo:vision-41",
+    "reasoningEffort": "max",
+    "authToken": "",
+    "authHeader": "authorization",
+    "authPrefix": "Bearer",
+    "allowRemote": false,
+    "fallbackModel": "combo:recommended-free",
+    "fallbackProvider": "",
+    "modelRetryCooldownMs": 600000,
+    "vision": {
+      "enabled": true,
+      "baseUrl": "",
+      "apiKey": "",
+      "model": "trae/deepseek-v4.1-flash",
+      "timeoutMs": 45000,
+      "maxImages": 3,
+      "maxChars": 500
+    }
+  },
+  "role": {
+    "maxInjectChars": 6000
+  },
+  "snowluma": {
+    "wsUrl": "ws://127.0.0.1:3001",
+    "httpUrl": "http://127.0.0.1:3000",
+    "accessToken": "",
+    "followDiscoveredEndpoint": true,
+    "silenceWarnMs": 600000,
+    "launcherPath": "",
+    "homeDir": ""
+  },
+  "ownerQQ": null,
+  "sessionCwd": "",
+  "agentPreset": "qq-chat-v2",
+  "workspaceTitle": "QQ 聊天",
+  "allow": {
+    "private": [],
+    "groups": []
+  },
+  "deny": {
+    "private": [],
+    "groups": []
+  },
+  "allowAllWhenEmpty": false,
+  "ackMessage": "",
+  "sendDelayMs": 300,
+  "greeting": {
+    "enabled": true,
+    "atUser": true,
+    "delayMs": 1500,
+    "dedupeMs": 60000,
+    "maxPerHour": 20,
+    "templates": [
+      "欢迎 {name} 进群～随便聊，我在的。",
+      "哟，{name} 来了，欢迎欢迎。"
+    ]
+  },
+  "questionTimeoutMs": 300000,
+  "consolePort": 3100,
+  "consoleToken": "",
+  "pricing": {
+    "models": {
+      "my-relay-model": {
+        "label": "我的中转模型",
+        "off": {
+          "cacheHit": 0.5,
+          "cacheMiss": 3,
+          "output": 9
+        }
+      }
+    }
+  },
+  "security": {
+    "interceptNotify": true
+  },
+  "slang": {
+    "enabled": true,
+    "extractMinMessages": 10,
+    "extractCooldownMs": 300000,
+    "inferenceThresholds": [
+      2,
+      4,
+      8
+    ],
+    "injectMax": 8,
+    "learnerPreset": "qq-chat-v2",
+    "workspaceTitle": "QQ 黑话学习",
+    "autoResearch": true,
+    "researchTimeoutMs": 300000,
+    "researchSessionBatch": 20,
+    "researchMaxSessions": 4,
+    "extractMax": 10,
+    "extractPromptExtra": "",
+    "researchPromptExtra": ""
+  },
+  "social": {
+    "enabled": true,
+    "maxReplyChars": 500,
+    "mustReplyKeywords": [
+      "deepseek",
+      "小鲸鱼",
+      "大肥鱼",
+      "鲸鱼",
+      "d指导",
+      "在吗"
+    ],
+    "contextWindow": 20,
+    "triggerProbability": 0.1,
+    "activeCheckMinMs": 8000,
+    "activeCheckMaxMs": 30000,
+    "idleWindowMs": 360000,
+    "idleRetryProbability": 0.4,
+    "proactiveEnabled": true,
+    "proactiveIdleThresholdMs": 1800000,
+    "proactiveCheckMinMs": 2700000,
+    "proactiveCheckMaxMs": 5400000,
+    "proactiveProbability": 0.2,
+    "activeReplyDelayMinMs": 1000,
+    "activeReplyDelayMaxMs": 5000,
+    "activeDurationEnabled": true,
+    "activeDurationMinMs": 1200000,
+    "activeDurationMaxMs": 3000000,
+    "skipProbability": 0.05,
+    "surrenderProbability": 0,
+    "idleRetryWaitMs": 120000,
+    "burstEnabled": true,
+    "burstIntervalMinMs": 1000,
+    "burstIntervalMaxMs": 3000,
+    "longGapProbability": 0.2,
+    "longGapMinMs": 5000,
+    "longGapMaxMs": 10000
+  },
+  "socialV2": {
+    "enabled": true,
+    "agentPreset": "qq-chat-v2",
+    "tools": {
+      "getPrompt": true,
+      "getUnread": true,
+      "getRecent": true,
+      "socialState": true,
+      "sendGroup": true,
+      "sendPrivate": true,
+      "reply": true,
+      "sendBurst": true,
+      "sendMessage": true,
+      "waitMessages": true,
+      "feedback": true,
+      "getMyRecent": true,
+      "getMessageDetail": true,
+      "getActiveMembers": true,
+      "setWakeConfig": true,
+      "markRead": true,
+      "memory": true,
+      "slangQuery": true,
+      "slangSubmit": true,
+      "getImages": true,
+      "getForwardMsg": true,
+      "sendPoke": true,
+      "listStickers": true,
+      "getStickerImage": true,
+      "sendSticker": true,
+      "setStickerRemark": false,
+      "stickerNote": true,
+      "collectSticker": true,
+      "getSelfImage": true,
+      "sendVoice": false
+    },
+    "send": {
+      "burstEnabled": true,
+      "burstMaxMessages": 8,
+      "burstIntervalMinMs": 1000,
+      "burstIntervalMaxMs": 3000,
+      "longGapProbability": 0.2,
+      "longGapMinMs": 5000,
+      "longGapMaxMs": 10000,
+      "maxMessageChars": 500,
+      "maxGapMs": 10000,
+      "gapBaseMs": 800,
+      "gapPerCharMs": 20
+    },
+    "sticker": {
+      "enabled": true,
+      "syncTtlMs": 60000,
+      "maxListCount": 100,
+      "includeInPrompt": true,
+      "promptMaxStickers": 8,
+      "collect": {
+        "enabled": true,
+        "maxPerMinute": 2,
+        "maxPerHour": 10,
+        "maxRemarkChars": 20
+      }
+    },
+    "voice": {
+      "enabled": false,
+      "dir": "audio",
+      "maxSeconds": 300,
+      "maxBytes": 20971520,
+      "maxPerMinute": 2,
+      "maxPerHour": 10,
+      "allowAbsolutePath": false,
+      "defaultVolume": 1,
+      "loudness": "normal",
+      "ffmpegPath": "",
+      "autoReadback": true
+    },
+    "feedback": {
+      "maxLength": 500,
+      "notifyOwnerOnError": false
+    },
+    "context": {
+      "recentLimit": 100,
+      "unreadLimit": 30
+    },
+    "initialPromptMaxChars": 2000,
+    "media": {
+      "maxBytes": 8388608,
+      "maxPixels": 64000000,
+      "maxCount": 5,
+      "normalize": true,
+      "maxModelBytes": 1048576,
+      "maxLongEdge": 1280,
+      "gifFrames": 6,
+      "gifTile": 240,
+      "normalizeTimeoutMs": 25000
+    },
+    "speech": {
+      "maxStartsPerHour": 4,
+      "maxRepliesPerThread": 5,
+      "threadIdleMs": 600000,
+      "retentionMs": 60000,
+      "baseChance": 0.02,
+      "maxChance": 0.12,
+      "spreadMs": 1200000,
+      "topicBypassMs": 300000
+    },
+    "runtime": {
+      "packBaseSize": 50,
+      "packMaxSize": 200,
+      "topicSnapshotLimit": 20,
+      "topicSnapshotMaxAgeMs": 600000
+    }
+  },
+  "webSearch": {
+    "provider": "auto",
+    "apiKey": "",
+    "apiKeyEnv": "DEEPSEEK_API_KEY",
+    "baseURL": "",
+    "model": "deepseek-v4-flash",
+    "maxUses": 5,
+    "maxTokens": 4096,
+    "maxResults": 8,
+    "timeoutMs": 35000
+  },
+  "selfIntro": {
+    "enabled": true,
+    "onlyOnJoin": false,
+    "delayMs": 3000,
+    "scanIntervalMs": 600000,
+    "templates": [
+      "大家好，我是{name}～有问题直接 @ 我就行。",
+      "嗨，{name} 来了，随便聊，我在的。",
+      "各位好，{name} 进群了，有事喊我。"
+    ]
+  },
+  "tools": {
+    "memeManager": {
+      "enabled": true,
+      "dir": "",
+      "script": "meme_renamer.py"
+    },
+    "snowluma": {
+      "enabled": true,
+      "autoStart": true,
+      "autoInstall": true,
+      "version": "2.1.1",
+      "distribution": "full",
+      "dir": "",
+      "script": "index.mjs",
+      "mirrors": []
+    },
+    "qqWatch": {
+      "interval": 30,
+      "startQq": ""
+    },
+    "qq": {
+      "path": "",
+      "version": "",
+      "source": ""
+    }
+  },
+  "knowledge": {
+    "enabled": true,
+    "backend": "off",
+    "local": {
+      "baseUrl": "http://127.0.0.1:11434/v1",
+      "model": "nomic-embed-text"
+    },
+    "cloud": {
+      "baseUrl": "",
+      "apiKey": "",
+      "model": ""
+    },
+    "topK": 5,
+    "minScore": 0.25,
+    "injectMaxChars": 1200,
+    "maxEntries": 3000,
+    "searchTimeoutMs": 1500,
+    "allowPropose": true,
+    "autoApprove": {
+      "enabled": true,
+      "batchSize": 20,
+      "intervalMs": 60000,
+      "extraTerms": [],
+      "verify": {
+        "enabled": true,
+        "kbDupScore": 0.75,
+        "maxVerifyPerRun": 10,
+        "maxRunMs": 90000,
+        "judge": {
+          "enabled": true,
+          "timeoutMs": 25000,
+          "maxSources": 3
+        }
+      },
+      "mode": "agent",
+      "agent": {
+        "enabled": true,
+        "batchSize": 12,
+        "maxWorkers": 4,
+        "backlogThreshold": 50,
+        "intervalMs": 30000,
+        "maxPackChars": 1400,
+        "turnTimeoutMs": 180000,
+        "preset": ""
+      }
+    },
+    "collect": {
+      "enabled": true,
+      "windowMs": 60000,
+      "maxMessages": 20,
+      "minMessages": 3,
+      "minChars": 6,
+      "maxPacksPerHour": 60,
+      "direct": false
+    },
+    "webSearch": {
+      "provider": "auto",
+      "tavily": {
+        "enabled": true,
+        "apiKey": "",
+        "keyless": true,
+        "searchDepth": "basic",
+        "minScore": 0.2,
+        "maxResults": 6,
+        "timeoutMs": 20000
+      }
+    }
+  },
+  "greetings": {
+    "enabled": false,
+    "timeZone": "Asia/Shanghai",
+    "times": {
+      "morning": "08:30",
+      "noon": "12:00",
+      "evening": "21:30"
+    },
+    "targets": [
+      "group:1098011551"
+    ],
+    "windowMs": 300000,
+    "useNetworkTime": true,
+    "networkTimeUrls": [
+      "https://www.baidu.com",
+      "https://www.microsoft.com"
+    ],
+    "maxPerDay": 3,
+    "generate": {
+      "count": 6,
+      "preset": "",
+      "style": ""
+    },
+    "imageMaxEdge": 260
+  },
+  "power": {
+    "enabled": false,
+    "timeZone": "Asia/Shanghai",
+    "safeCloseEnabled": false,
+    "safeCloseTime": "23:30",
+    "shutdownEnabled": false,
+    "shutdownTime": "23:40",
+    "shutdownDelaySeconds": 60,
+    "shutdownReason": "每日定时关机",
+    "dryRun": false,
+    "offHours": 10
+  }
+}

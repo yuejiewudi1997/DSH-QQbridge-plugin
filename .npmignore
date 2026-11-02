@@ -1,0 +1,10 @@
+# 运行态日志不进包（体积小但没意义，每次启动都会重新生成）
+bridge/state/*.log
+snowluma/logs/
+snowluma/tmp/
+snowluma/data/
+
+# 依赖缓存
+**/.cache/
+**/*.tsbuildinfo
+bridge/config.json
